@@ -1,14 +1,14 @@
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import { mock, mockClear, MockProxy } from "vitest-mock-extended";
-import { PGConnectionPool, PostgresConnection } from "../src/postgres";
+import { PGConnectionPool, PostgresConnectionAdapter } from "../src/postgres";
 
 describe("Statement", () => {
   let connectionPool: MockProxy<PGConnectionPool>;
-  let connection: PostgresConnection;
+  let connection: PostgresConnectionAdapter;
 
   beforeEach(() => {
     connectionPool = mock<PGConnectionPool>();
-    connection = new PostgresConnection(connectionPool);
+    connection = new PostgresConnectionAdapter(connectionPool);
   });
 
   afterEach(() => {

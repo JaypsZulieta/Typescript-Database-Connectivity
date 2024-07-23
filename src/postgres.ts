@@ -68,7 +68,7 @@ class PostgresPreparedStatement extends PostgresStatement implements PreparedSta
   }
 }
 
-export class PostgresConnection implements DatabaseConnection {
+export class PostgresConnectionAdapter implements DatabaseConnection {
   constructor(private connectionPool: PGConnectionPool) {}
 
   async close(): Promise<void> {
@@ -85,8 +85,8 @@ export class PostgresConnection implements DatabaseConnection {
 }
 
 export class PostgresConnectionFactory {
-  static create(url: string): PostgresConnection {
+  static create(url: string): PostgresConnectionAdapter {
     const connectionPool = new PGConnectionPool({ connectionString: url });
-    return new PostgresConnection(connectionPool);
+    return new PostgresConnectionAdapter(connectionPool);
   }
 }

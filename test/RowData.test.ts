@@ -1,4 +1,4 @@
-import { PostgresConnection } from "../src/postgres";
+import { PostgresConnectionAdapter } from "../src/postgres";
 import { PGConnectionPool } from "../src/postgres";
 import { describe, test, expect, beforeEach, afterEach, assert } from "vitest";
 import { mock, mockClear, MockProxy } from "vitest-mock-extended";
@@ -6,11 +6,11 @@ import { ColumnNotFoundError, ColumnTypeError } from "../src/tsdbc";
 
 describe("RowData", () => {
   let connectionPool: MockProxy<PGConnectionPool>;
-  let connection: PostgresConnection;
+  let connection: PostgresConnectionAdapter;
 
   beforeEach(() => {
     connectionPool = mock<PGConnectionPool>();
-    connection = new PostgresConnection(connectionPool);
+    connection = new PostgresConnectionAdapter(connectionPool);
   });
 
   afterEach(() => {
