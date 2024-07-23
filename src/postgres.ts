@@ -31,9 +31,7 @@ class PostgresPreparedStatement extends PostgresStatement implements PreparedSta
 
   private static transFrom(SQL: string): string {
     let properSQLString = "";
-    let parameterIndex = 0;
-
-    for (let index = 0; index < SQL.length; index++) {
+    for (let index = 0, parameterIndex = 0; index < SQL.length; index++) {
       if (SQL[index] == "?") {
         parameterIndex++;
         properSQLString += `$${parameterIndex}`;
