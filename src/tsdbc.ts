@@ -104,7 +104,7 @@ export interface Statement {
 
 export interface PreparedStatement extends Statement {
   setString(value: string): PreparedStatement;
-  setNumber(value: string): PreparedStatement;
+  setNumber(value: number): PreparedStatement;
   setBoolean(value: boolean): PreparedStatement;
   setDate(value: Date): PreparedStatement;
 }
