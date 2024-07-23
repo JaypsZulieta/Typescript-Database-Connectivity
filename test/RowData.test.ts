@@ -399,4 +399,27 @@ describe("RowData", () => {
       assert.throws(action, ColumnTypeError, errorMessage);
     }
   );
+
+  test.each([
+    {
+      rows: [{ name: "John" }, { name: "Smith" }, { name: "Doe" }],
+      rowLength: 3,
+      expectedLength: 3,
+    },
+    {
+      rows: [{ age: 19 }, { age: 20 }, { age: 21 }, { age: 22 }, { age: 23 }, { age: 25 }],
+      rowLength: 6,
+      expectedLength: 6,
+    },
+  ])(
+    "RowData -> rows length is $rowLength -> rowData length should be $expectedLength",
+    async ({ rows }) => {
+      connectionPool.query.mockResolvedValue({ rows });
+
+      const statement = connection.createStatement("SELECT * FROM users");
+      const rowData = await statement.execute();
+
+      expect(rowData.length).toBe(rows.length);
+    }
+  );
 });
