@@ -85,3 +85,10 @@ export class PostgresConnection implements DatabaseConnection {
     return new PostgresPreparedStatement(this.connectionPool, SQL);
   }
 }
+
+export class PostgresConnectionFactory {
+  static create(url: string): PostgresConnection {
+    const connectionPool = new PGConnectionPool({ connectionString: url });
+    return new PostgresConnection(connectionPool);
+  }
+}
