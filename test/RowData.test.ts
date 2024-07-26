@@ -151,6 +151,21 @@ describe("RowData", () => {
       expectedValue: null,
     },
     {
+      rows: [{ count: "28" }],
+      columnLabel: "count",
+      expectedValue: 28,
+    },
+    {
+      rows: [{ count: "69" }],
+      columnLabel: "count",
+      expectedValue: 69,
+    },
+    {
+      rows: [{ count: "82" }],
+      columnLabel: "count",
+      expectedValue: 82,
+    },
+    {
       rows: [{ role_no: null }],
       columnLabel: "role_no",
       expectedValue: null,
